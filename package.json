@@ -57,7 +57,7 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest",
-    "fix": "eslint --fix src"
+    "fix": "eslint --fix internal"
   },
   "jest": {
     "testEnvironment": "node"
