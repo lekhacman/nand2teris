@@ -1,5 +1,4 @@
 /** https://www.nand2tetris.org/hdl-survival-guide */
-/** xor test cases implemented in operator package */
 CHIP Xor {
   IN a, b;
   OUT out;

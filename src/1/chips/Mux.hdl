@@ -1,7 +1,10 @@
+/** If sel=0 then out=a else out=b */
 CHIP Mux {
   IN a, b, sel;
   OUT out;
 
   PARTS:
-
+  Not(in=a, out=notA)
+  Not(in=b, out=notB)
+  Not(in=sel, out=notSel)
 }
