@@ -253,3 +253,37 @@ func TestDMux(t *testing.T) {
 		}
 	}
 }
+
+func TestNot16(t *testing.T) {
+	cases := []struct {
+		input [16]bool
+		want  [16]bool
+	}{
+		{
+			input: [16]bool{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+			want:  [16]bool{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
+		},
+		{
+			input: [16]bool{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
+			want:  [16]bool{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+		},
+		{
+			input: [16]bool{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			want:  [16]bool{false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+		},
+		{
+			input: [16]bool{false, false, true, true, true, true, false, false, true, true, false, false, false, false, true, true},
+			want:  [16]bool{true, true, false, false, false, false, true, true, false, false, true, true, true, true, false, false},
+		},
+		{
+			input: [16]bool{false, false, false, true, false, false, true, false, false, false, true, true, false, true, false, false},
+			want:  [16]bool{true, true, true, false, true, true, false, true, true, true, false, false, true, false, true, true},
+		},
+	}
+	for _, c := range cases {
+		got := Not16(c.input)
+		if got != c.want {
+			t.Errorf("Not16(%v) = %v, want %v", c.input, got, c.want)
+		}
+	}
+}

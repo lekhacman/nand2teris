@@ -59,3 +59,11 @@ func DMux(in, sel bool) [2]bool {
 		Mux(false, in, sel),
 	}
 }
+
+func Not16(in [16]bool) [16]bool {
+	var out [16]bool
+	for i := 0; i < len(out); i++ {
+		out[i] = Not(in[i])
+	}
+	return out
+}
