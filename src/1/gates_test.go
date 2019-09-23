@@ -1,7 +1,6 @@
 package gates
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -190,17 +189,17 @@ func TestMux(t *testing.T) {
 		},
 	}
 
-	toBinary := func(x bool) byte {
-		if x {
-			return 1
-		}
-		return 0
-	}
+	//toBinary := func(x bool) byte {
+	//	if x {
+	//		return 1
+	//	}
+	//	return 0
+	//}
 
-	fmt.Println("| a | b |sel|got|wan|err|")
+	//fmt.Println("| a | b |sel|got|wan|err|")
 	for _, c := range cases {
 		got := Mux(c.input[0], c.input[1], c.input[2])
-		err := " "
+		//err := " "
 		if got != c.want {
 			t.Errorf(
 				"Mux(%t, %t, %t) = %t, want %t",
@@ -210,17 +209,17 @@ func TestMux(t *testing.T) {
 				got,
 				c.want,
 			)
-			err = "x"
+			//err = "x"
 		}
-		fmt.Printf(
-			"| %b | %b | %b | %b | %b | %v |\n",
-			toBinary(c.input[0]),
-			toBinary(c.input[1]),
-			toBinary(c.input[2]),
-			toBinary(got),
-			toBinary(c.want),
-			err,
-		)
+		//fmt.Printf(
+		//	"| %b | %b | %b | %b | %b | %v |\n",
+		//	toBinary(c.input[0]),
+		//	toBinary(c.input[1]),
+		//	toBinary(c.input[2]),
+		//	toBinary(got),
+		//	toBinary(c.want),
+		//	err,
+		//)
 	}
 }
 

@@ -50,6 +50,12 @@ func Mux(x, y, sel bool) bool {
 	)
 }
 
+// If sel=0 then {a=in, b=0} else {a=0, b=in}.
+// [Go] If sel=false then {a=in, b=false} else {a=false, b=in}.
 func DMux(in, sel bool) [2]bool {
-	return [2]bool{true, true}
+
+	return [2]bool{
+		Mux(in, false, sel),
+		Mux(false, in, sel),
+	}
 }
