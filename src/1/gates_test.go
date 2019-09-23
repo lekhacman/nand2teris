@@ -146,7 +146,7 @@ func TestXor(t *testing.T) {
 	for _, c := range cases {
 		got := Xor(c.input[0], c.input[1])
 		if got != c.want {
-			t.Errorf("Nand(%t, %t) = %t, want %t", c.input[0], c.input[1], got, c.want)
+			t.Errorf("Xor(%t, %t) = %t, want %t", c.input[0], c.input[1], got, c.want)
 		}
 	}
 }
@@ -221,5 +221,36 @@ func TestMux(t *testing.T) {
 			toBinary(c.want),
 			err,
 		)
+	}
+}
+
+func TestDMux(t *testing.T) {
+	cases := []struct {
+		input [2]bool
+		want  [2]bool
+	}{
+		{
+			input: [2]bool{false, false},
+			want:  [2]bool{false, false},
+		},
+		{
+			input: [2]bool{false, true},
+			want:  [2]bool{false, false},
+		},
+		{
+			input: [2]bool{true, false},
+			want:  [2]bool{true, false},
+		},
+		{
+			input: [2]bool{true, true},
+			want:  [2]bool{false, true},
+		},
+	}
+
+	for _, c := range cases {
+		got := DMux(c.input[0], c.input[1])
+		if got != c.want {
+			t.Errorf("DMux(%t, %t) = %v, want %v", c.input[0], c.input[1], got, c.want)
+		}
 	}
 }

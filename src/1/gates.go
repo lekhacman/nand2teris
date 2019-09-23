@@ -49,3 +49,7 @@ func Mux(x, y, sel bool) bool {
 		or2,
 	)
 }
+
+func DMux(in, sel bool) [2]bool {
+	return [2]bool{true, true}
+}
