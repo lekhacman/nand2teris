@@ -3,6 +3,6 @@ CHIP DMux {
     OUT a, b;
 
     PARTS:
-    Mux(a=in, b=0, out=a)
-    Mux(a=0, b=in, out=b)
+    Mux(a=in, b=0, out=a);
+    Mux(a=0, b=in, out=b);
 }
