@@ -67,3 +67,12 @@ func Not16(in [16]bool) [16]bool {
 	}
 	return out
 }
+
+func And16(a, b [16]bool) [16]bool {
+	var out [16]bool
+	for i := 0; i < len(out); i++ {
+		out[i] = And(a[i], b[i])
+		//fmt.Printf("And(a=a[%d], b=b[%d], out=out[%d]);\n", i, i, i)
+	}
+	return out
+}
