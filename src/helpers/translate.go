@@ -17,7 +17,7 @@ func reduce(
 	return out
 }
 
-func mapp(fn func(string) string, f []string) []string {
+func Mapp(fn func(string) string, f []string) []string {
 	out := make([]string, len(f))
 	for id, item := range f {
 		out[id] = fn(item)
@@ -35,7 +35,7 @@ func ToBoolean(str string) string {
 	connect := func(acc, item string) string {
 		return fmt.Sprintf("%s, %s", acc, item)
 	}
-	bools := mapp(
+	bools := Mapp(
 		binaryToBool,
 		strings.Split(str, ""),
 	)
