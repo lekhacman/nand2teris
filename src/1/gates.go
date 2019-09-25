@@ -76,3 +76,19 @@ func And16(a, b [16]bool) [16]bool {
 	}
 	return out
 }
+
+func reduce(
+	fn func(acc bool, cur bool) bool,
+	init bool,
+	f [8]bool,
+) bool {
+	out := init
+	for _, item := range f {
+		out = fn(out, item)
+	}
+	return out
+}
+
+func Or8Way(in [8]bool) bool {
+	return reduce(Or, false, in)
+}

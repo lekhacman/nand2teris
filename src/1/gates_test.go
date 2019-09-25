@@ -343,3 +343,38 @@ func TestAnd16(t *testing.T) {
 		}
 	}
 }
+
+func TestOr8Way(t *testing.T) {
+	cases := []struct {
+		in  [8]bool
+		out bool
+	}{
+		{
+			in:  [8]bool{},
+			out: false,
+		},
+		{
+			in:  [8]bool{true, true, true, true, true, true, true, true},
+			out: true,
+		},
+		{
+			in:  [8]bool{false, false, false, true, false, false, false, false},
+			out: true,
+		},
+		{
+			in:  [8]bool{false, false, false, false, false, false, false, true},
+			out: true,
+		},
+		{
+			in:  [8]bool{false, false, true, false, false, true, true, false},
+			out: true,
+		},
+	}
+
+	for _, c := range cases {
+		got := Or8Way(c.in)
+		if got != c.out {
+			t.Errorf("Or8Way(%v)\n = %t, want %t", c.in, got, c.out)
+		}
+	}
+}
