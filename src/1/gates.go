@@ -77,6 +77,14 @@ func And16(a, b [16]bool) [16]bool {
 	return out
 }
 
+func Mux16(a, b [16]bool, sel bool) [16]bool {
+	var out [16]bool
+	for i := 0; i < 16; i++ {
+		out[i] = Mux(a[i], b[i], sel)
+	}
+	return out
+}
+
 func reduce(
 	fn func(acc bool, cur bool) bool,
 	init bool,
@@ -92,4 +100,12 @@ func reduce(
 
 func Or8Way(in [8]bool) bool {
 	return reduce(Or, false, in)
+}
+
+func Mux4Way16(a, b, c, d [16]bool, sel [2]bool) [16]bool {
+	return Mux16(
+		Mux16(a, b, sel[1]),
+		Mux16(c, d, sel[1]),
+		sel[0],
+	)
 }

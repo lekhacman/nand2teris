@@ -378,3 +378,119 @@ func TestOr8Way(t *testing.T) {
 		}
 	}
 }
+
+type Mux4WayInput struct {
+	v   [4][16]bool
+	sel [2]bool
+}
+
+func TestMux4Way16(t *testing.T) {
+	cases := []struct {
+		in  Mux4WayInput
+		out [16]bool
+	}{
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+				},
+				[2]bool{false, false},
+			},
+			out: [16]bool{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+		},
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+				},
+				[2]bool{false, true},
+			},
+			out: [16]bool{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+		},
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+				},
+				[2]bool{true, false},
+			},
+			out: [16]bool{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+		},
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+					{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+				},
+				[2]bool{true, true},
+			},
+			out: [16]bool{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+		},
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, true, false, false, true, false, false, false, true, true, false, true, false, false},
+					{true, false, false, true, true, false, false, false, false, true, true, true, false, true, true, false},
+					{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+					{false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+				},
+				[2]bool{false, false},
+			},
+			out: [16]bool{false, false, false, true, false, false, true, false, false, false, true, true, false, true, false, false},
+		},
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, true, false, false, true, false, false, false, true, true, false, true, false, false},
+					{true, false, false, true, true, false, false, false, false, true, true, true, false, true, true, false},
+					{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+					{false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+				},
+				[2]bool{false, true},
+			},
+			out: [16]bool{true, false, false, true, true, false, false, false, false, true, true, true, false, true, true, false},
+		},
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, true, false, false, true, false, false, false, true, true, false, true, false, false},
+					{true, false, false, true, true, false, false, false, false, true, true, true, false, true, true, false},
+					{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+					{false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+				},
+				[2]bool{true, false},
+			},
+			out: [16]bool{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+		},
+		{
+			in: Mux4WayInput{
+				[4][16]bool{
+					{false, false, false, true, false, false, true, false, false, false, true, true, false, true, false, false},
+					{true, false, false, true, true, false, false, false, false, true, true, true, false, true, true, false},
+					{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+					{false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+				},
+				[2]bool{true, true},
+			},
+			out: [16]bool{false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+		},
+	}
+
+	for id, c := range cases {
+		got := Mux4Way16(c.in.v[0], c.in.v[1], c.in.v[2], c.in.v[3], c.in.sel)
+		if got != c.out {
+			t.Errorf("#%d Mux4Way16\ngot:%v\nwan:%v\n", id+1, got, c.out)
+		}
+	}
+}
