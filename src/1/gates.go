@@ -85,6 +85,7 @@ func reduce(
 	out := init
 	for _, item := range f {
 		out = fn(out, item)
+		//fmt.Printf("Or(a=in[%d], b=in[%d], out=temp);\n", id, id + 1)
 	}
 	return out
 }
