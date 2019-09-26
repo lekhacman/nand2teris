@@ -1,7 +1,7 @@
 const fs = require('fs');
 const R = require('ramda');
 
-const testPlan = fs.readFileSync('src/1/chips/Mux8Way16.cmp', 'utf8');
+const testPlan = fs.readFileSync('src/1/chips/DMux4Way.cmp', 'utf8');
 
 const data = R.pipe(
   R.split('\n'),
@@ -21,7 +21,14 @@ const data = R.pipe(
           R.map(
             R.pipe(
               R.split(''),
-              R.map(R.equals('1'))
+              R.ifElse(
+                R.compose(
+                  R.equals(1),
+                  R.length
+                ),
+                R.compose(R.equals('1'), R.head),
+                R.map(R.equals('1'))
+              )
             )
           ),
           makeTest
