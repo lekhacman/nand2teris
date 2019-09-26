@@ -111,5 +111,10 @@ func Mux4Way16(a, b, c, d [16]bool, sel [2]bool) [16]bool {
 }
 
 func Mux8Way16(a, b, c, d, e, f, g, h [16]bool, sel [3]bool) [16]bool {
-	return [16]bool{}
+
+	return Mux16(
+		Mux4Way16(a, b, c, d, [2]bool{sel[1], sel[2]}),
+		Mux4Way16(e, f, g, h, [2]bool{sel[1], sel[2]}),
+		sel[0],
+	)
 }
