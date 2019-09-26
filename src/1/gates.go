@@ -59,6 +59,10 @@ func DMux(in, sel bool) [2]bool {
 		Mux(false, in, sel),
 	}
 }
+func _DMux(in, sel bool) (a, b bool) {
+	out := DMux(in, sel)
+	return out[0], out[1]
+}
 
 func Not16(in [16]bool) [16]bool {
 	var out [16]bool
@@ -117,4 +121,10 @@ func Mux8Way16(a, b, c, d, e, f, g, h [16]bool, sel [3]bool) [16]bool {
 		Mux4Way16(e, f, g, h, [2]bool{sel[1], sel[2]}),
 		sel[0],
 	)
+}
+
+func DMux4Way(in bool, sel [2]bool) (a, b, c, d bool) {
+	a, b = _DMux(in, sel[0])
+	c, d = _DMux(in, sel[1])
+	return
 }
