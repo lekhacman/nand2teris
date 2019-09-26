@@ -1,6 +1,11 @@
 package gates
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"path/filepath"
 	"testing"
 )
 
@@ -491,6 +496,39 @@ func TestMux4Way16(t *testing.T) {
 		got := Mux4Way16(c.in.v[0], c.in.v[1], c.in.v[2], c.in.v[3], c.in.sel)
 		if got != c.out {
 			t.Errorf("#%d Mux4Way16\ngot:%v\nwan:%v\n", id+1, got, c.out)
+		}
+	}
+}
+
+func TestMux8Way16(t *testing.T) {
+	basePath, _ := filepath.Abs("./chips")
+	testPlanPath, _ := ioutil.ReadFile(
+		fmt.Sprintf(
+			"%v/%v",
+			basePath,
+			"Mux8Way16Test.json",
+		),
+	)
+	var cases []struct {
+		A   [16]bool
+		B   [16]bool
+		C   [16]bool
+		D   [16]bool
+		E   [16]bool
+		F   [16]bool
+		G   [16]bool
+		H   [16]bool
+		Sel [3]bool
+		Out [16]bool
+	}
+	if err := json.Unmarshal(testPlanPath, &cases); err != nil {
+		log.Fatal(err)
+	}
+
+	for id, c := range cases {
+		got := Mux8Way16(c.A, c.B, c.C, c.D, c.E, c.F, c.G, c.H, c.Sel)
+		if got != c.Out {
+			t.Errorf("#%d Mux8Way16\ngot:%v\nwan:%v\n", id+1, got, c.Out)
 		}
 	}
 }
