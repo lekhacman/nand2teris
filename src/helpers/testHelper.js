@@ -1,7 +1,8 @@
 const fs = require('fs');
 const R = require('ramda');
 
-const testPlan = fs.readFileSync('src/1/chips/DMux4Way.cmp', 'utf8');
+const chipName = 'DMux8Way';
+const testPlan = fs.readFileSync(`src/1/chips/${chipName}.cmp`, 'utf8');
 
 const data = R.pipe(
   R.split('\n'),
@@ -26,7 +27,10 @@ const data = R.pipe(
                   R.equals(1),
                   R.length
                 ),
-                R.compose(R.equals('1'), R.head),
+                R.compose(
+                  R.equals('1'),
+                  R.head
+                ),
                 R.map(R.equals('1'))
               )
             )
@@ -38,4 +42,4 @@ const data = R.pipe(
   }
 )(testPlan);
 
-fs.writeFileSync('dist/test.json', JSON.stringify(data));
+fs.writeFileSync(`dist/${chipName}.cmp.json`, JSON.stringify(data));

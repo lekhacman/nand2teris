@@ -506,7 +506,7 @@ func TestMux8Way16(t *testing.T) {
 		fmt.Sprintf(
 			"%v/%v",
 			basePath,
-			"Mux8Way16Test.json",
+			"Mux8Way16.cmp.json",
 		),
 	)
 	var cases []struct {
