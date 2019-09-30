@@ -563,3 +563,38 @@ func TestDMux4Way(t *testing.T) {
 		}
 	}
 }
+
+func TestDMux8Way(t *testing.T) {
+	basePath, _ := filepath.Abs("./chips")
+	testPlanPath, _ := ioutil.ReadFile(
+		fmt.Sprintf(
+			"%v/%v",
+			basePath,
+			"DMux8Way.cmp.json",
+		),
+	)
+	var cases []struct {
+		A   bool
+		B   bool
+		C   bool
+		D   bool
+		E   bool
+		F   bool
+		G   bool
+		H   bool
+		Sel [3]bool
+		In  bool
+	}
+	if err := json.Unmarshal(testPlanPath, &cases); err != nil {
+		log.Fatal(err)
+	}
+
+	for id, c := range cases {
+		a, b, _c, d, e, f, g, h := DMux8Way(c.In, c.Sel)
+		got := [8]bool{a, b, _c, d, e, f, g, h}
+		want := [8]bool{c.A, c.B, c.C, c.D, c.E, c.F, c.G, c.H}
+		if got != want {
+			t.Errorf("#%d DMux4Way\ngot:%v\nwan:%v\n", id+1, got, want)
+		}
+	}
+}

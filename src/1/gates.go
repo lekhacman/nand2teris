@@ -129,3 +129,10 @@ func DMux4Way(in bool, sel [2]bool) (a, b, c, d bool) {
 	c, d = _DMux(g2, sel[1])
 	return
 }
+
+func DMux8Way(in bool, sel [3]bool) (a, b, c, d, e, f, g, h bool) {
+	g1, g2 := _DMux(in, sel[0])
+	a, b, c, d = DMux4Way(g1, [2]bool{sel[1], sel[2]})
+	e, f, g, h = DMux4Way(g2, [2]bool{sel[1], sel[2]})
+	return
+}
