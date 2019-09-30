@@ -124,7 +124,8 @@ func Mux8Way16(a, b, c, d, e, f, g, h [16]bool, sel [3]bool) [16]bool {
 }
 
 func DMux4Way(in bool, sel [2]bool) (a, b, c, d bool) {
-	a, b = _DMux(in, sel[0])
-	c, d = _DMux(in, sel[1])
+	g1, g2 := _DMux(in, sel[0])
+	a, b = _DMux(g1, sel[1])
+	c, d = _DMux(g2, sel[1])
 	return
 }
