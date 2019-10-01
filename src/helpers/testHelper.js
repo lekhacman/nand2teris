@@ -1,8 +1,9 @@
 const fs = require('fs');
 const R = require('ramda');
 
-const chipName = 'HalfAdder';
-const testPlan = fs.readFileSync(`src/gates/02/${chipName}.cmp`, 'utf8');
+const chipName = 'FullAdder';
+const basePath = 'src/gates/chips/02';
+const testPlan = fs.readFileSync(`${basePath}/${chipName}.cmp`, 'utf8');
 
 const data = R.pipe(
   R.split('\n'),
@@ -42,4 +43,4 @@ const data = R.pipe(
   }
 )(testPlan);
 
-fs.writeFileSync(`dist/${chipName}.cmp.json`, JSON.stringify(data));
+fs.writeFileSync(`${basePath}/${chipName}.cmp.json`, JSON.stringify(data));
