@@ -80,3 +80,22 @@ func TestAdd16(t *testing.T) {
 		}
 	}
 }
+
+func TestInc16(t *testing.T) {
+	path, _ := filepath.Abs("./chips/02/Inc16.cmp.json")
+	testPlanPath, _ := ioutil.ReadFile(path)
+	var cases []struct {
+		In  [16]bool
+		Out [16]bool
+	}
+	if err := json.Unmarshal(testPlanPath, &cases); err != nil {
+		log.Fatal(err)
+	}
+
+	for id, c := range cases {
+		got := Inc16(c.In)
+		if got != c.Out {
+			t.Errorf("#%d Inc16\ngot:%v\nwan:%v\n", id+1, got, c.Out)
+		}
+	}
+}

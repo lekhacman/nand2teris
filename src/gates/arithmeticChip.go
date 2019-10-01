@@ -18,18 +18,6 @@ func FullAdder(a, b, c bool) (sum, carry bool) {
 	return
 }
 
-//func add2(a, b [2]bool) (out [2]bool) {
-//  return
-//}
-//
-//func add4(a, b [4]bool) (out [4]bool) {
-//  return
-//}
-//
-//func add8(a, b [8]bool) (out [8]bool) {
-//  return
-//}
-
 func Add16(a, b [16]bool) (out [16]bool) {
 	carry := false
 	id := len(out) - 1
@@ -40,5 +28,9 @@ func Add16(a, b [16]bool) (out [16]bool) {
 	if carry {
 		fmt.Println("Overflow!")
 	}
+	return
+}
+
+func Inc16(in [16]bool) (out [16]bool) {
 	return
 }
