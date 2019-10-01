@@ -47,16 +47,16 @@ func TestFullAdder(t *testing.T) {
 
 	for id, c := range cases {
 		sum, carry := FullAdder(c.A, c.B, c.C)
-		if sum != c.Sum {
-			t.Errorf("#%d Sum got:%v wan:%v\n", id+1, sum, c.Sum)
-		}
-		if carry != c.Carry {
-			t.Errorf("#%d Carry got:%v wan:%v\n", id+1, carry, c.Carry)
-		}
-		//got := [2]bool{sum, carry}
-		//want := [2]bool{c.Sum, c.Carry}
-		//if got != want {
-		//  t.Errorf("#%d FullAdder\ngot:%v\nwan:%v\n", id+1, got, want)
+		//if sum != c.Sum {
+		//	t.Errorf("#%d Sum got:%v wan:%v\n", id+1, sum, c.Sum)
 		//}
+		//if carry != c.Carry {
+		//	t.Errorf("#%d Carry got:%v wan:%v\n", id+1, carry, c.Carry)
+		//}
+		got := [2]bool{sum, carry}
+		want := [2]bool{c.Sum, c.Carry}
+		if got != want {
+			t.Errorf("#%d FullAdder\ngot:%v\nwan:%v\n", id+1, got, want)
+		}
 	}
 }
