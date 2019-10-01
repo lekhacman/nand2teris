@@ -24,29 +24,10 @@ func Xor(x, y bool) bool {
 }
 
 // If sel = true, return y, else return x
-func Mux(x, y, sel bool) bool {
-	//return (x && !y && !sel) || (x && y && !sel) || (!x && y && sel) || (x && y && sel)
-	notX := Not(x)
-	notY := Not(y)
-	notSel := Not(sel)
-	xy := And(x, y)
-	notYnotSel := And(notY, notSel)
-	ySel := And(y, sel)
-	xnotYnotSel := And(x, notYnotSel)
-	xyNotSel := And(xy, notSel)
-	or1 := Or(
-		xnotYnotSel,
-		xyNotSel,
-	)
-	andNotXySel := And(notX, ySel)
-	xysel := And(xy, sel)
-	or2 := Or(
-		andNotXySel,
-		xysel,
-	)
+func Mux(a, b, sel bool) bool {
 	return Or(
-		or1,
-		or2,
+		And(Not(sel), a),
+		And(sel, b),
 	)
 }
 
