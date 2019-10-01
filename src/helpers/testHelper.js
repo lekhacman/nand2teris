@@ -1,7 +1,7 @@
 const fs = require('fs');
 const R = require('ramda');
 
-const chipName = 'DMux8Way';
+const chipName = 'Mux4Way16';
 const testPlan = fs.readFileSync(`src/1/chips/${chipName}.cmp`, 'utf8');
 
 const data = R.pipe(

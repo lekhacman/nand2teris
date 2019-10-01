@@ -196,7 +196,7 @@ func TestMux(t *testing.T) {
 
 	//toBinary := func(x bool) byte {
 	//	if x {
-	//		return 1
+	//		return gates
 	//	}
 	//	return 0
 	//}
@@ -219,7 +219,7 @@ func TestMux(t *testing.T) {
 		//fmt.Printf(
 		//	"| %b | %b | %b | %b | %b | %v |\n",
 		//	toBinary(c.input[0]),
-		//	toBinary(c.input[1]),
+		//	toBinary(c.input[gates]),
 		//	toBinary(c.input[2]),
 		//	toBinary(got),
 		//	toBinary(c.want),
