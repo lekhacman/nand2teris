@@ -2,7 +2,6 @@ package gates
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"path/filepath"
@@ -501,14 +500,8 @@ func TestMux4Way16(t *testing.T) {
 }
 
 func TestMux8Way16(t *testing.T) {
-	basePath, _ := filepath.Abs("./chips")
-	testPlanPath, _ := ioutil.ReadFile(
-		fmt.Sprintf(
-			"%v/%v",
-			basePath,
-			"Mux8Way16.cmp.json",
-		),
-	)
+	path, _ := filepath.Abs("./chips/01/Mux8Way16.cmp.json")
+	testPlanPath, _ := ioutil.ReadFile(path)
 	var cases []struct {
 		A   [16]bool
 		B   [16]bool
@@ -534,14 +527,8 @@ func TestMux8Way16(t *testing.T) {
 }
 
 func TestDMux4Way(t *testing.T) {
-	basePath, _ := filepath.Abs("./chips")
-	testPlanPath, _ := ioutil.ReadFile(
-		fmt.Sprintf(
-			"%v/%v",
-			basePath,
-			"DMux4Way.cmp.json",
-		),
-	)
+	path, _ := filepath.Abs("./chips/01/DMux4Way.cmp.json")
+	testPlanPath, _ := ioutil.ReadFile(path)
 	var cases []struct {
 		A   bool
 		B   bool
@@ -565,14 +552,8 @@ func TestDMux4Way(t *testing.T) {
 }
 
 func TestDMux8Way(t *testing.T) {
-	basePath, _ := filepath.Abs("./chips")
-	testPlanPath, _ := ioutil.ReadFile(
-		fmt.Sprintf(
-			"%v/%v",
-			basePath,
-			"DMux8Way.cmp.json",
-		),
-	)
+	path, _ := filepath.Abs("./chips/01/DMux8Way.cmp.json")
+	testPlanPath, _ := ioutil.ReadFile(path)
 	var cases []struct {
 		A   bool
 		B   bool
