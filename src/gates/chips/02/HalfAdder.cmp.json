@@ -1,0 +1,1 @@
+[{"a":false,"b":false,"sum":false,"carry":false},{"a":false,"b":true,"sum":true,"carry":false},{"a":true,"b":false,"sum":true,"carry":false},{"a":true,"b":true,"sum":false,"carry":true}]
