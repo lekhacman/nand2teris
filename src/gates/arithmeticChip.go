@@ -31,6 +31,8 @@ func Add16(a, b [16]bool) (out [16]bool) {
 	return
 }
 
-func Inc16(in [16]bool) (out [16]bool) {
-	return
+func Inc16(in [16]bool) [16]bool {
+	var one = [16]bool{}
+	one[15] = true
+	return Add16(in, one)
 }
