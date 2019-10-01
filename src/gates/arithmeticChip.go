@@ -15,3 +15,7 @@ func FullAdder(a, b, c bool) (sum, carry bool) {
 	carry = Or(c1, c2)
 	return
 }
+
+func Add16(a, b [16]bool) (out [16]bool) {
+	return
+}
