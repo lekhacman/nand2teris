@@ -60,3 +60,8 @@ func ALU(x, y [16]bool, zx, nx, zy, ny, f, no bool) (out [16]bool, zr, ng bool) 
 	ng = out[0]
 	return
 }
+
+func ALUnostat(x, y [16]bool, zx, nx, zy, ny, f, no bool) (out [16]bool) {
+	out, _, _ = ALU(x, y, zx, nx, zy, ny, f, no)
+	return
+}

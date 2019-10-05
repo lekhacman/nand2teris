@@ -153,23 +153,15 @@ func TestALUnostat(t *testing.T) {
 		F   bool
 		NO  bool
 		Out [16]bool
-		ZR  bool
-		NG  bool
 	}
 	if err := json.Unmarshal(testPlanPath, &cases); err != nil {
 		log.Fatal(err)
 	}
 
 	for id, c := range cases {
-		out, zr, ng := ALU(c.X, c.Y, c.ZX, c.NX, c.ZY, c.NY, c.F, c.NO)
-		got := aluOutput{
-			out, zr, ng,
-		}
-		want := aluOutput{
-			c.Out, c.ZR, c.NG,
-		}
-		if got != want {
-			t.Errorf("#%d ALU-nostat\ngot:%v\nwan:%v\n", id+1, got, want)
+		got := ALUnostat(c.X, c.Y, c.ZX, c.NX, c.ZY, c.NY, c.F, c.NO)
+		if got != c.Out {
+			t.Errorf("#%d ALU-nostat\ngot:%v\nwan:%v\n", id+1, got, c.Out)
 		}
 	}
 }
