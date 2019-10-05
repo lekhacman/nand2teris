@@ -23,6 +23,16 @@ func Xor(x, y bool) bool {
 	return Or(And(x, Not(y)), And(Not(x), y))
 }
 
+func Eq(a, b bool) bool {
+	return Or(
+		And(a, b),
+		And(
+			Not(a),
+			Not(b),
+		),
+	)
+}
+
 // If sel = true, return y, else return x
 func Mux(a, b, sel bool) bool {
 	return Or(
