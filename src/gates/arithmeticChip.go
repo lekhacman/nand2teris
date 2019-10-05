@@ -36,3 +36,7 @@ func Inc16(in [16]bool) [16]bool {
 	one[15] = true
 	return Add16(in, one)
 }
+
+func ALU(x, y [16]bool, zx, nx, zy, ny, f, no bool) (out [16]bool, zr, ng bool) {
+	return
+}

@@ -99,3 +99,77 @@ func TestInc16(t *testing.T) {
 		}
 	}
 }
+
+type aluOutput struct {
+	out [16]bool
+	zr  bool
+	ng  bool
+}
+
+func TestALU(t *testing.T) {
+	path, _ := filepath.Abs("./chips/02/ALU.cmp.json")
+	testPlanPath, _ := ioutil.ReadFile(path)
+	var cases []struct {
+		X   [16]bool
+		Y   [16]bool
+		ZX  bool
+		NX  bool
+		ZY  bool
+		NY  bool
+		F   bool
+		NO  bool
+		Out [16]bool
+		ZR  bool
+		NG  bool
+	}
+	if err := json.Unmarshal(testPlanPath, &cases); err != nil {
+		log.Fatal(err)
+	}
+
+	for id, c := range cases {
+		out, zr, ng := ALU(c.X, c.Y, c.ZX, c.NX, c.ZY, c.NY, c.F, c.NO)
+		got := aluOutput{
+			out, zr, ng,
+		}
+		want := aluOutput{
+			c.Out, c.ZR, c.NG,
+		}
+		if got != want {
+			t.Errorf("#%d ALU\ngot:%v\nwan:%v\n", id+1, got, want)
+		}
+	}
+}
+
+func TestALUnostat(t *testing.T) {
+	path, _ := filepath.Abs("./chips/02/ALU-nostat.cmp.json")
+	testPlanPath, _ := ioutil.ReadFile(path)
+	var cases []struct {
+		X   [16]bool
+		Y   [16]bool
+		ZX  bool
+		NX  bool
+		ZY  bool
+		NY  bool
+		F   bool
+		NO  bool
+		Out [16]bool
+		ZR  bool
+		NG  bool
+	}
+	if err := json.Unmarshal(testPlanPath, &cases); err != nil {
+		log.Fatal(err)
+	}
+
+	for id, c := range cases {
+		out, zr, ng := ALU(c.X, c.Y, c.ZX, c.NX, c.ZY, c.NY, c.F, c.NO)
+		got := aluOutput{
+			out, zr, ng,
+		}
+		want := aluOutput{
+			c.Out, c.ZR, c.NG,
+		}
+		if got != want {
+			t.Errorf("#%d ALU-nostat\ngot:%v\nwan:%v\n", id+1, got, want)
+		}
+	}
+}
