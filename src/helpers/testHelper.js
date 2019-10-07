@@ -1,8 +1,8 @@
 const fs = require('fs');
 const R = require('ramda');
 
-const chipName = 'ALU';
-const basePath = 'src/gates/chips/02';
+const chipName = 'Bit';
+const basePath = 'src/gates/chips/03/a';
 const testPlan = fs.readFileSync(`${basePath}/${chipName}.cmp`, 'utf8');
 
 const data = R.pipe(

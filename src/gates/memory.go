@@ -16,3 +16,21 @@ func DFF(in bool) func() bool {
 }
 
 // End of primitive chip
+
+/**
+Chip name: Bit
+Inputs: in, load
+Outputs: out
+Function:
+If load(t - 1)
+  then out(t) = in(t - 1)
+  else out(t) = out(t - 1)
+*/
+func NewBit() func(in, load bool) func() bool {
+	memory := DFF(false)
+
+	return func(in, load bool) func() bool {
+		memory = DFF(Mux(memory(), in, load))
+		return memory
+	}
+}
