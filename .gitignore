@@ -70,3 +70,5 @@ softwares
 **.out
 dist
 **.hack
+
+**cmake-build-debug
