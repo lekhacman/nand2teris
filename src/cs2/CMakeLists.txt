@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.16)
+project(c C)
+
+set(CMAKE_C_STANDARD 99)
+
+add_executable(endian endian.c)
+add_executable(hex hexadecimal.c)
+add_executable(address address.c)
