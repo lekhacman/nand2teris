@@ -80,26 +80,3 @@ function hexToDex(hex) {
 
 }
 
-const rows = [
-    [23, null, null],
-    [null, 32768, null],
-    [null, null, 2000],
-    [12, null, null],
-    [null, 64, null],
-    [null, null, 100],
-]
-const table = rows.map(function([n, decimal, hex]) {
-    if(n) {
-        decimal = Math.pow(2, n);
-        hex = dexToHex(decimal);
-    } else if (decimal) {
-        n = Math.log2(decimal);
-        hex = dexToHex(decimal);
-    } else {
-        decimal = hexToDex(hex);
-        n = Math.log2(decimal);
-    }
-    return [n, decimal, hex];
-});
-
-table.forEach(console.log.bind(console))

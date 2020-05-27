@@ -1,0 +1,10 @@
+// A. 0x605c + 0x5      = c + 5 = 12 + 5 = 17 = 15 + 2 = 1overflow + index2 = 1remainder + 0x1
+// B. 0x605c − 0x20     = 0x
+// C. 0x605c + 32       = 0x
+// D. 0x60fa − 0x605c   | a-c = 10 - 12 = 1remainder - 2index = 60f - 606 = 0x9e
+
+// solution
+// 0x6061
+// 0x603C
+// 0x607C
+// 0x9E
