@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 typedef unsigned char *bytePointer;
 
@@ -6,6 +7,7 @@ void showBytes(bytePointer data, size_t len);
 void showInt(int x);
 void showFloat(float x);
 void showPointer(void *x);
+void showStr(char *str);
 
 int main() {
     int num = 12345;
@@ -28,6 +30,8 @@ int main() {
     showFloat(f26); // 0x0445564a | 00000100010001010101011001001010
     double d26 = 3510593.0;
     showBytes((bytePointer) &d26, sizeof(d26));
+
+    showStr("Hello World!");
 }
 
 void showBytes(bytePointer data, size_t len) {
@@ -49,4 +53,8 @@ void showFloat(float x) {
 
 void showPointer(void *x) {
     showBytes((bytePointer) &x, sizeof(void *));
+}
+
+void showStr(char *str) {
+    showBytes((bytePointer) str, strlen(str));
 }
