@@ -19,6 +19,16 @@ int main() {
     for (int i = 0; i < 4; ++i) {
         printf("%d\t%d\t%d\n", words[i], fn1(words[i]), fn2(words[i]));
     }
+
+    int x = 53191;
+    printf("x: %d\n", x);
+    printf("hex: %x\n", x);
+    short sx = (short) x;
+    printf("sx: %d\n", sx);
+    printf("hex: %x\n", sx);
+    int y = sx;
+    printf("y: %d\n", y);
+    printf("hex: %x\n", y);
 }
 
 //f1    0000 0076 8765 4321 0000 00C9 EDCB A987
