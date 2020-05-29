@@ -1,24 +1,40 @@
 #include <stdio.h>
 #include <string.h>
 
-int hexToDecimal(char hex);
-char * decimalToBinary(int decimal);
-char * hexToBinary(char hex[]);
+char hexToDecimal(char hex);
+void decimalToBinary(char out[], char decimal);
+void hexToBinary(char out[][4], const char hex[], const char len);
+void showBinaryArr(char arr[][4], char len);
 
 int main() {
-    printf("%s", hexToBinary("25b9d2"));
-
+    char zeroHex[] = "12fe";
+    char size = strlen(zeroHex);
+    char zero[size][4];
+    hexToBinary(zero, zeroHex, size);
+    showBinaryArr(zero, size);
     return 0;
 }
 
-char * hexToBinary(char hex[]) {
-    char result[sizeof(hex)*4];
-    for (int i = 0; i < sizeof(hex); ++i) {
+void showBinaryArr(char arr[][4], char len) {
+    printf("[");
+    for (int i = 0; i < len; ++i) {
+        printf(" ");
+        for (int j = 0; j < 4; ++j) {
+            printf("%d", arr[i][j]);
+        }
+        printf(" ");
+    }
+    printf("]\n");
+}
 
+void hexToBinary(char out[][4], const char hex[], const char len) {
+    for (int i = 0; i < len; ++i) {
+        char decimal = hexToDecimal(hex[i]);
+        decimalToBinary(out[i], decimal);
     }
 }
 
-int hexToDecimal(char hex) {
+char hexToDecimal(char hex) {
     switch (hex)
     {
         case '0':
@@ -54,47 +70,31 @@ int hexToDecimal(char hex) {
         case 'f':
             return 15;
         default:
-            return 99;
+            return hex;
     }
 }
 
-char * decimalToBinary(int decimal) {
-    switch (decimal)
-    {
-        case 0:
-            return "0000";
-        case 1:
-            return "0001";
-        case 2:
-            return "0010";
-        case 3:
-            return "0011";
-        case 4:
-            return "0100";
-        case 5:
-            return "0101";
-        case 6:
-            return "0110";
-        case 7:
-            return "0111";
-        case 8:
-            return "1000";
-        case 9:
-            return "1001";
-        case 10:
-            return "1010";
-        case 11:
-            return "1011";
-        case 12:
-            return "1100";
-        case 13:
-            return "1101";
-        case 14:
-            return "1110";
-        case 15:
-            return "1111";
-        default:
-            return "";
+void decimalToBinary(char out[], char decimal) {
+    char map[16][4] = {
+            {0, 0, 0, 0},
+            {0, 0, 0, 1},
+            {0, 0, 1, 0},
+            {0, 0, 1, 1},
+            {0, 1, 0, 0},
+            {0, 1, 0, 1},
+            {0, 1, 1, 0},
+            {0, 1, 1, 1},
+            {1, 0, 0, 0},
+            {1, 0, 0, 1},
+            {1, 0, 1, 0},
+            {1, 0, 1, 1},
+            {1, 1, 0, 0},
+            {1, 1, 0, 1},
+            {1, 1, 1, 0},
+            {1, 1, 1, 1},
+    };
+    for (int i = 0; i < 4; ++i) {
+        out[i] = map[decimal][i];
     }
 }
 
