@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(c C)
+project(nand2teris)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -12,3 +12,4 @@ add_executable(cs2.8 2.8.c)
 add_executable(cs2.9 2.9.c)
 add_executable(cs2.10 2.10-11.c)
 add_executable(cs2.17 2.17.c)
+add_executable(cs2.18 2.18.c)

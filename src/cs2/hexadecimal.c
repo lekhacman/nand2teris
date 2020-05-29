@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include "hexadecimal.h"
 
-char hexToDecimal(char hex);
-void decimalToBinary(char out[], char decimal);
-void hexToBinary(char out[][4], const char hex[], const char len);
-void showBinaryArr(char arr[][4], char len);
 
 int main() {
     char zeroHex[] = "12fe";
@@ -12,13 +9,32 @@ int main() {
     char zero[size][4];
     hexToBinary(zero, zeroHex, size);
     showBinaryArr(zero, size);
+
+    char ex218[10][3] = {
+            "2e0",
+            "058",
+            "028",
+            "030",
+            "078",
+            "088",
+            "1f8",
+            "008",
+            "0c0",
+            "048",
+    };
+    for (int i = 0; i < 10; ++i) {
+        char ex218size = 3;
+        char b218[ex218size][4];
+        hexToBinary(b218, ex218[i], ex218size);
+        showBinaryArr(b218, ex218size);
+    }
+
     return 0;
 }
 
 void showBinaryArr(char arr[][4], char len) {
-    printf("[");
+    printf("[ ");
     for (int i = 0; i < len; ++i) {
-        printf(" ");
         for (int j = 0; j < 4; ++j) {
             printf("%d", arr[i][j]);
         }
