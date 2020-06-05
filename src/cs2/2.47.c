@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define SIZE 5
-#define E_SIZE 2
+#define E_SIZE 3
 #define F_SIZE 2
 
 void showBits(char list[], char len) {
@@ -29,33 +28,51 @@ float computeFrac(char bits[], char len) {
 }
 
 int main() {
-    char cases[16][4] = {
-            {0,0,0,0},
-            {0,0,0,1},
-            {0,0,1,0},
-            {0,0,1,1},
-            {0,1,0,0},
-            {0,1,0,1},
-            {0,1,1,0},
-            {0,1,1,1},
-            {1,0,0,0},
-            {1,0,0,1},
-            {1,0,1,0},
-            {1,0,1,1},
-            {1,1,0,0},
-            {1,1,0,1},
-            {1,1,1,0},
-            {1,1,1,1},
+    const int totalcases = 32;
+    const char size = E_SIZE + F_SIZE;
+    char cases[totalcases][size] = {
+            {0,0,0,0,0},
+            {0,0,0,0,1},
+            {0,0,0,1,0},
+            {0,0,0,1,1},
+            {0,0,1,0,0},
+            {0,0,1,0,1},
+            {0,0,1,1,0},
+            {0,0,1,1,1},
+            {0,1,0,0,0},
+            {0,1,0,0,1},
+            {0,1,0,1,0},
+            {0,1,0,1,1},
+            {0,1,1,0,0},
+            {0,1,1,0,1},
+            {0,1,1,1,0},
+            {0,1,1,1,1},
+            {1,0,0,0,0},
+            {1,0,0,0,1},
+            {1,0,0,1,0},
+            {1,0,0,1,1},
+            {1,0,1,0,0},
+            {1,0,1,0,1},
+            {1,0,1,1,0},
+            {1,0,1,1,1},
+            {1,1,0,0,0},
+            {1,1,0,0,1},
+            {1,1,0,1,0},
+            {1,1,0,1,1},
+            {1,1,1,0,0},
+            {1,1,1,0,1},
+            {1,1,1,1,0},
+            {1,1,1,1,1},
     };
     char bias = pow(2, E_SIZE - 1) - 1;
     char maxE = pow(2, E_SIZE) - 1;
     printf("Bias: %d\n", bias);
     printf("Max e: %d\n", maxE);
 
-    printf("Bits\te\tE\t2e\tf\t\tM\t\tV\n");
+    printf("Bits\te\tE\t2e\t\t\tf\t\t\tM\t\t\tV\n");
     float v = 0;
-    for (int i = 0; i < 16; ++i) {
-        showBits(cases[i], 4);
+    for (int i = 0; i < totalcases; ++i) {
+        showBits(cases[i], size);
 
         // initialize
         char eBits[E_SIZE];
@@ -80,7 +97,7 @@ int main() {
             printf("%d\t", power);
             m = frac;
         } else if (e == maxE) { // Infinity/NaN
-            printf("_\t_\t_\t\t_\t\t");
+            printf("_\t_\t\t\t_\t\t\t_\t\t\t");
             char f = b2u(fBits, F_SIZE);
             if (f == 0) {
                 printf("Infinity");
@@ -94,10 +111,10 @@ int main() {
             printf("%d\t", power);
             m = frac + 1;
         }
-        char p2 = pow(2, power);
-        printf("%d\t", p2);
-        printf("%.2f\t", frac);
-        printf("%.2f\t", m);
-        printf("%.2f\n", m * p2);
+        float p2 = pow(2, power);
+        printf("%f\t", p2);
+        printf("%f\t", frac);
+        printf("%f\t", m);
+        printf("%f\n", m * p2);
     }
 }
