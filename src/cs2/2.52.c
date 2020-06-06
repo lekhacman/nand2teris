@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <math.h>
 
-#define E_SIZE 2
-#define F_SIZE 3
+//a       b          value  comments
+//15/2    1001 111   15/2
+//25/32   0110 100   3/4    round down
+//31/2    1011 000   16     round up
+//1/64    0001 000   1/64   denorm -> norm
+
+#define E_SIZE 3
+#define F_SIZE 4
 
 void showBits(char list[], char len) {
     printf("[");
@@ -28,48 +34,21 @@ float computeFrac(char bits[], char len) {
 }
 
 int main() {
-    const int totalcases = 32;
+    const int totalcases = 5;
     const char size = E_SIZE + F_SIZE;
     char cases[totalcases][size] = {
-            {0,0,0,0,0},
-            {0,0,0,0,1},
-            {0,0,0,1,0},
-            {0,0,0,1,1},
-            {0,0,1,0,0},
-            {0,0,1,0,1},
-            {0,0,1,1,0},
-            {0,0,1,1,1},
-            {0,1,0,0,0},
-            {0,1,0,0,1},
-            {0,1,0,1,0},
-            {0,1,0,1,1},
-            {0,1,1,0,0},
-            {0,1,1,0,1},
-            {0,1,1,1,0},
-            {0,1,1,1,1},
-            {1,0,0,0,0},
-            {1,0,0,0,1},
-            {1,0,0,1,0},
-            {1,0,0,1,1},
-            {1,0,1,0,0},
-            {1,0,1,0,1},
-            {1,0,1,1,0},
-            {1,0,1,1,1},
-            {1,1,0,0,0},
-            {1,1,0,0,1},
-            {1,1,0,1,0},
-            {1,1,0,1,1},
-            {1,1,1,0,0},
-            {1,1,1,0,1},
-            {1,1,1,1,0},
-            {1,1,1,1,1},
+            {0,1,1,0,0,0,0},
+            {1,0,1,1,1,1,0},
+            {0,1,0,1,0,0,1},
+            {1,1,0,1,1,1,1},
+            {0,0,0,0,0,0,1},
     };
     char bias = pow(2, E_SIZE - 1) - 1;
     char maxE = pow(2, E_SIZE) - 1;
     printf("Bias: %d\n", bias);
     printf("Max e: %d\n", maxE);
 
-    printf("Bits\te\tE\t2e\t\t\tf\t\t\tM\t\t\tV\n");
+    printf("Bits\t\te\tE\t2e\t\t\tf\t\t\tM\t\t\tV\n");
     float v = 0;
     for (int i = 0; i < totalcases; ++i) {
         showBits(cases[i], size);
