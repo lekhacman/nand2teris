@@ -5,3 +5,4 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(hello hello.c)
 add_executable(5 5.c)
+add_executable(22 22.c)
